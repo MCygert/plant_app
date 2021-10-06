@@ -1,0 +1,50 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="create-user-table" author="Mikołaj Cygert">
+        <createTable tableName="user">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-plant-table" author="Mikołaj Cygert">
+        <createTable tableName="plant">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="public_id" type="varchar(255)" >
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="amount" type="decimal(37,18)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="plant_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_of_buying" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigserial">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+<!--        <addForeignKeyConstraint baseTableName="plant" baseColumnNames="user_id" constraintName="fk_plant_user_id" referencedTableName="user"-->
+<!--                                 referencedColumnNames="id"/>-->
+    </changeSet>
+
+
+</databaseChangeLog>
